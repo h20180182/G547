@@ -15,7 +15,6 @@ char *buf_ent;
 static dev_t first;
 static struct class *cls;
 static struct cdev accel_cdev;
-//unsigned short int kernel_buf[1];
 
 //Driver call function
 
@@ -41,24 +40,16 @@ printk(KERN_INFO "accelerometer: read()\n");
 	//true random generate
 	fp = filp_open("/dev/random",O_NONBLOCK,0);
 	if(fp==NULL){printk(KERN_INFO "couldn't open /dev/random\n");return -EFAULT;}
-	//get_random_bytes(buf_ent, 2);
+	
 	if(!(fp->f_op->read(fp,buf_ent,2,&fp->f_pos)))
 	{ printk(KERN_INFO "couldn't read /dev/random \n");return -EFAULT;}
 	*tep =*tep & (0x03ff);
-	//*(buf_ent+1)=*(buf_ent+1)&(0x03);
+
 	printk(KERN_INFO "random No: %u \n",*tep);
 	if(copy_to_user(pbuffer, tep,4)) printk(KERN_INFO "Could not be sent\n");
 	return 0;
 }
 
-/*static ssize_t accel_read(struct file *f,char __user *buf,size_t len,loff_t *off)
-{
-	get_random_bytes(kernel_buf,2);
-	*kernel_buf= *kernel_buf & 0x03ff;
-	copy_to_user(buf,kernel_buf,2);
-	printk(KERN_INFO "accelerometer: read()\n");
-	return 0;
-}*/
 static ssize_t accel_write(struct file *f,const char __user *buf,size_t len,loff_t *off)
 {
 	printk(KERN_INFO "accelerometer: write()\n");
@@ -126,7 +117,7 @@ for(i=0;i<=2;i++)
 	{
 		device_destroy(cls,MKDEV(MAJOR(first),i));
 	}
-	//device_destroy(cls,first);
+	
         class_destroy(cls);
 	for(i=0;i<=2;i++)
 	{
@@ -142,5 +133,4 @@ module_exit(accelchar_exit);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("sambit<sambitpatra5@gmail.com>");
 MODULE_DESCRIPTION("Accelerometer ADXL device file");
-
 
