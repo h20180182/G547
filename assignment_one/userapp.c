@@ -23,18 +23,6 @@ int main()
 	system(SHELLSCRIPT);
         printf("\n*******Accelerometer output*******\n");
 
-       /* adxl_x = open("/dev/adxl_x", O_RDWR);
-	if(adxl_x<0){printf("file adxl_x cannot be opened\n");exit(-1);}
-	adxl_y = open("/dev/adxl_y", O_RDWR);
-	if(adxl_y<0){printf("file adxl_y cannot be opened\n");exit(-1);}
-	adxl_z = open("/dev/adxl_z", O_RDWR);
-	if(adxl_z<0){printf("file adxl_z cannot be opened\n");exit(-1);}
-        read(adxl_x,read_buf_x,2);
-	read(adxl_y,read_buf_y,2);
-	read(adxl_z,read_buf_z,2);
-	close(adxl_x);
-	close(adxl_y);
-	close(adxl_z);*/
 
         while(1) {
                 printf("****Please Enter the Option******\n");
@@ -78,7 +66,7 @@ int main()
                         default:
                                 printf("Enter Valid option = %c\n",option);
                                 break;
-                }
-        }
+                		}
+        	}
         return 0;
 }
