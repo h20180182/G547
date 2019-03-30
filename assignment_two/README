@@ -15,5 +15,5 @@ DISK ON FILE:-
 
 6. use dd utility (i.e dd if=(input file) of=(output file)) and then open sample.txt to check data being copied	
 
-Note: Don't keep the file open while copying
+Note: Don't keep the text file open while copying
 
