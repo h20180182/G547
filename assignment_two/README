@@ -1,0 +1,19 @@
+KERNEL VERSION : 4.14 AND ABOVE
+
+DISK ON FILE:-
+
+
+1. Create a text file "/etc/sample.txt"
+
+2. Insert the module
+
+3. Use "fdisk -l /dev/dof" command for checking the partitions..
+
+4. Use echo to write into the /dev/dof 
+
+5. Create another text file with some data in it
+
+6. use dd utility (i.e dd if=(input file) of=(output file)) and then open sample.txt to check data being copied	
+
+Note: Don't keep the file open while copying
+
